@@ -3,8 +3,21 @@ project(hello CXX)
 #set(SOURCES
 #    src/hello.cpp
 #)
-file(GLOB SOURCES "src/*.cpp")
-message(${SOURCES})
-add_executable(${PROJECT_NAME} ${SOURCES})
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+#file(GLOB SOURCES "src/*.cpp")
+#message(${SOURCES})
+#add_executable(${PROJECT_NAME} ${SOURCES})
+#set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
+
+set(LIB_SRCS src/hello.cpp)
+add_library(${PROJECT_NAME} ${LIB_SRCS})
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR} include)
+set(TEST_SRCS tests/test_hello.cpp)
+add_executable(test_${PROJECT_NAME} ${TEST_SRCS})
+target_link_libraries(test_${PROJECT_NAME}
+    ${PROJECT_NAME}
+    ${CONAN_LIBS}
+)
 
