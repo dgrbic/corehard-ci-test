@@ -12,7 +12,7 @@ install:
 
 script:
   - mkdir build && cd build
-  - conan install .. --build 
+  - conan install .. --build  -s compiler.libcxx=libstdc++11
   - cmake ..
   - cmake --build .
   - ./bin/test_hello
