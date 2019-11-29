@@ -6,13 +6,27 @@ before_install:
 
 install:
   # Install conan
-  - sudo -E pip install conan
+  #- sudo -E pip install conan
   # Automatic detection of your arch, compiler, etc.
-  - conan user
+  # - conan user
+
+    - |
+    if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+      pip install --user -q conan
+      conan user
+    else
+      sudo -E pip install conan
+      conan user
+    fi
 
 script:
   - mkdir build && cd build
-  - conan install .. --build 
+  - |
+  if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
+    conan install .. -build -s compiler.libcxx=libstdc++11
+  else
+    conan install .. --build
+  fi
   - cmake ..
   - cmake --build .
   - ./bin/test_hello
