@@ -6,9 +6,9 @@ before_install:
 
 install:
   # Install conan
-  - sudo -E pip install conan
+  # - sudo -E pip install conan
   # Automatic detection of your arch, compiler, etc.
-  - conan user
+  # - conan user
 
   - |
   if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
