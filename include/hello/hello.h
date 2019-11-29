@@ -5,9 +5,7 @@
 
 
 namespace hello {
-
-
+    
 std::ostream& greetings(std::ostream&);
-
 
 }
