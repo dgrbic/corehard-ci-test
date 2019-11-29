@@ -1,4 +1,5 @@
 language: cpp
+sudo: required
 
 
 before_install:
@@ -6,13 +7,13 @@ before_install:
 
 install:
   # Install conan
-  - pip install --user -q conan
+  - sudo -E pip install conan
   # Automatic detection of your arch, compiler, etc.
   - conan user
 
 script:
   - mkdir build && cd build
-  - conan install .. --build=missing -s compiler.libcxx=libstdc++11
+  - conan install .. --build
   - cmake ..
   - cmake --build .
   - ./bin/test_hello
@@ -60,3 +61,7 @@ matrix:
             - clang-7
       env:
          - MATRIX_EVAL="CC=clang && CXX=clang++"
+    - os: osx
+      osx_image: xcode9.4
+      env:
+        - MATRIX_EVAL="CC=clang && CXX=clang++"
