@@ -1,5 +1,6 @@
 language: cpp
 sudo: required
+python: "3.6"
 
 before_install:
     - eval "${MATRIX_EVAL}"
