@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 project(hello CXX)
 #set(SOURCES
 #    src/hello.cpp
