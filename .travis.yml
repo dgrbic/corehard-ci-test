@@ -13,11 +13,13 @@ install:
   - |
   if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then
     pip install --user -q conan
+    conan user
   else
     # Install conan
     sudo -E pip install conan
+    conan user
   fi
-  - conan user
+  
 
 script:
   - mkdir build && cd build
