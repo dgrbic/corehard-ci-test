@@ -1,7 +1,6 @@
 language: cpp
-dist: trusty
+dist: bionic
 sudo: required
-
 
 before_install:
     - eval "${MATRIX_EVAL}"
@@ -18,7 +17,6 @@ script:
   - cmake ..
   - cmake --build .
   - ./bin/test_hello
-
 
 matrix:
   include:
